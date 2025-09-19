@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Nightfall — Local Band</title>
+  <meta name="description" content="Nightfall — indie/alt band. Upcoming shows, music, contact." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    :root{
+      --bg:#070607;
+      --card:#0f0f12;
+      --muted:#9aa0a6;
+      --accent:#ffca28;
+    }
+
+    /* 🚫 Hide site and show warning on desktop */
+    @media(min-width:768px){
+      body > *:not(#desktopWarning){ display:none !important; }
+      #desktopWarning{ display:flex !important; }
+    }
+
+    #desktopWarning{
+      display:none;
+      background:var(--bg);
+      color:white;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:1.1rem;
+      padding:2rem;
+      min-height:100vh;
+    }
+
+    /* NEW: Popup modal */
+    #audioModal {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+    }
+    #audioModal.active { display:flex; }
+  </style>
+</head>
+<body class="bg-[color:var(--bg)] text-white min-h-screen antialiased font-sans">
+
+  <!-- 🚫 Warning for desktop -->
+  <div id="desktopWarning">
+    <div>
+      <h2 class="text-xl font-bold mb-2">⚠ Mobile Only</h2>
+      <p>This website is designed for mobile devices.<br/> Please open it on your phone or tablet.</p>
+    </div>
+  </div>
+
+  <!-- ✅ Mobile content -->
+  <header class="p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gray-800 to-black flex items-center justify-center ring-1 ring-white/6">
+        <span class="text-xl font-bold">DJ</span>
+      </div>
+      <div>
+        <h1 class="text-base font-semibold">Gradio</h1>
+        <p class="text-xs text-[color:var(--muted)]">Blayne Castello</p>
+      </div>
+    </div>
+    <button id="menuBtn" class="p-2 rounded-md bg-white/5 text-[color:var(--muted)]">≡</button>
+  </header>
+
+  <main class="px-4 pb-8">
+    <img src="assets/images/hero.png" alt="Band hero" 
+     class="w-full h-auto max-h-[70vh] object-contain bg-black" />
+
+      <div class="p-4">
+        <h2 class="text-xl font-bold">Cantilan — Live in Food Park</h2>
+        <p class="text-sm text-[color:var(--muted)] mt-1">Dark, raw indie sounds — new EP out now.</p>
+        <div class="mt-3 flex gap-2">
+          <a href="#shows" class="flex-1 text-center py-2 rounded-lg bg-[color:var(--accent)] text-black font-semibold">Upcoming Shows</a>
+          <!-- NEW: Listen button triggers popup -->
+          <button id="listenBtn" class="flex-1 text-center py-2 rounded-lg border border-white/8">Listen</button>
+        </div>
+      </div>
+
+    <section class="mt-6 space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-sm font-medium">Next gig</h3>
+          <p class="text-xs text-[color:var(--muted)]">Sat • Oct 4 • Moonlight Club</p>
+        </div>
+        <a href="#tickets" class="text-[color:var(--accent)] font-semibold text-sm">Get tickets</a>
+      </div>
+
+      <div id="shows" class="rounded-lg bg-[color:var(--card)] p-3">
+        <h4 class="text-sm font-semibold">Shows & Events</h4>
+        <ul class="mt-2 text-[color:var(--muted)] text-sm space-y-2">
+          <li>Oct 4 — Moonlight Club — 9PM</li>
+          <li>Nov 10 — Riverside Bar — 8PM</li>
+          <li>Dec 1 — Winter Fest — 7PM</li>
+        </ul>
+      </div>
+
+      <div id="music" class="rounded-lg bg-[color:var(--card)] p-3">
+        <h4 class="text-sm font-semibold">Listen</h4>
+        <p class="text-[color:var(--muted)] text-sm mt-2">Stream on your favorite platforms. (Links / embedded players go here.)</p>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 py-2 rounded-lg border border-white/8 text-sm">Spotify</button>
+          <button class="flex-1 py-2 rounded-lg border border-white/8 text-sm">YouTube</button>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-[color:var(--card)] p-3">
+        <h4 class="text-sm font-semibold">Contact & Socials</h4>
+        <p class="text-[color:var(--muted)] text-sm mt-2">Bookings: bookings@nightfall.band</p>
+        <div class="mt-3 flex gap-2">
+          <a class="flex-1 py-2 rounded-lg border border-white/8 text-center text-sm" href="#">Instagram</a>
+          <a class="flex-1 py-2 rounded-lg border border-white/8 text-center text-sm" href="#">Facebook</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-6">
+      <h4 class="text-sm font-semibold px-1">Gallery</h4>
+      <div class="mt-2 grid grid-cols-3 gap-2">
+        <img src="assets/images/gallery1.jpg" alt="gallery1" class="w-full h-24 object-cover rounded" />
+        <img src="assets/images/gallery2.jpg" alt="gallery2" class="w-full h-24 object-cover rounded" />
+        <img src="assets/images/gallery3.jpg" alt="gallery3" class="w-full h-24 object-cover rounded" />
+      </div>
+    </section>
+
+    <footer class="mt-8 text-center text-[color:var(--muted)] text-xs pb-6">
+      © <span id="year"></span> Nightfall — All rights reserved
+    </footer>
+  </main>
+
+  <!-- NEW: Audio Modal -->
+  <div id="audioModal">
+    <div class="bg-[color:var(--card)] rounded-2xl p-4 w-11/12 max-w-sm text-center shadow-xl">
+      <h3 class="text-lg font-semibold mb-3">🎵 Now Playing</h3>
+      <audio id="bandAudio" controls autoplay class="w-full">
+        <source src="assets/audio/bandits.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <button id="closeAudio" class="mt-4 px-4 py-2 rounded-lg bg-[color:var(--accent)] text-black font-semibold w-full">Close</button>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Popup audio modal logic
+    const listenBtn = document.getElementById('listenBtn');
+    const audioModal = document.getElementById('audioModal');
+    const closeAudio = document.getElementById('closeAudio');
+    const bandAudio = document.getElementById('bandAudio');
+
+    listenBtn.addEventListener('click', () => {
+      audioModal.classList.add('active');
+      bandAudio.play();
+    });
+
+    closeAudio.addEventListener('click', () => {
+      bandAudio.pause();
+      bandAudio.currentTime = 0;
+      audioModal.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
