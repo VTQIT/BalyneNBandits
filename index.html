@@ -76,15 +76,15 @@
     <img src="assets/images/hero.png" alt="Band hero" 
      class="w-full h-auto max-h-[70vh] object-contain bg-black" />
 
-      <div class="p-4">
-        <h2 class="text-xl font-bold">Cantilan — Live in Food Park</h2>
-        <p class="text-sm text-[color:var(--muted)] mt-1">Dark, raw indie sounds — new EP out now.</p>
-        <div class="mt-3 flex gap-2">
-          <a href="#shows" class="flex-1 text-center py-2 rounded-lg bg-[color:var(--accent)] text-black font-semibold">Upcoming Shows</a>
-          <!-- NEW: Listen button triggers popup -->
-          <button id="listenBtn" class="flex-1 text-center py-2 rounded-lg border border-white/8">Listen</button>
-        </div>
+    <div class="p-4">
+      <h2 class="text-xl font-bold">Cantilan — Live in Food Park</h2>
+      <p class="text-sm text-[color:var(--muted)] mt-1">Dark, raw indie sounds — new EP out now.</p>
+      <div class="mt-3 flex gap-2">
+        <a href="#shows" class="flex-1 text-center py-2 rounded-lg bg-[color:var(--accent)] text-black font-semibold">Upcoming Shows</a>
+        <!-- Popup player -->
+        <button id="listenBtn" class="flex-1 text-center py-2 rounded-lg border border-white/8">Listen</button>
       </div>
+    </div>
 
     <section class="mt-6 space-y-3">
       <div class="flex items-center justify-between">
@@ -104,12 +104,23 @@
         </ul>
       </div>
 
+      <!-- 🎵 Streaming links -->
       <div id="music" class="rounded-lg bg-[color:var(--card)] p-3">
         <h4 class="text-sm font-semibold">Listen</h4>
-        <p class="text-[color:var(--muted)] text-sm mt-2">Stream on your favorite platforms. (Links / embedded players go here.)</p>
+        <p class="text-[color:var(--muted)] text-sm mt-2">Stream on your favorite platforms:</p>
+        
         <div class="mt-3 flex gap-2">
-          <button class="flex-1 py-2 rounded-lg border border-white/8 text-sm">Spotify</button>
-          <button class="flex-1 py-2 rounded-lg border border-white/8 text-sm">YouTube</button>
+          <a href="https://open.spotify.com/artist/your_band_id" target="_blank"
+             class="flex-1 py-2 rounded-lg border border-white/8 text-sm text-center">Spotify</a>
+          <a href="https://www.youtube.com/watch?v=SUCoufHMj3M" target="_blank"
+             class="flex-1 py-2 rounded-lg border border-white/8 text-sm text-center">YouTube</a>
+        </div>
+        
+        <div class="mt-2 flex gap-2">
+          <a href="https://music.apple.com/artist/your_band_id" target="_blank"
+             class="flex-1 py-2 rounded-lg border border-white/8 text-sm text-center">Apple Music</a>
+          <a href="https://soundcloud.com/your_band_page" target="_blank"
+             class="flex-1 py-2 rounded-lg border border-white/8 text-sm text-center">SoundCloud</a>
         </div>
       </div>
 
@@ -118,7 +129,7 @@
         <p class="text-[color:var(--muted)] text-sm mt-2">Bookings: bookings@nightfall.band</p>
         <div class="mt-3 flex gap-2">
           <a class="flex-1 py-2 rounded-lg border border-white/8 text-center text-sm" href="#">Instagram</a>
-          <a class="flex-1 py-2 rounded-lg border border-white/8 text-center text-sm" href="#">Facebook</a>
+          <a class="flex-1 py-2 rounded-lg border border-white/8 text-center text-sm" href="https://www.facebook.com/gradiofm">Facebook</a>
         </div>
       </div>
     </section>
@@ -137,7 +148,7 @@
     </footer>
   </main>
 
-  <!-- NEW: Audio Modal -->
+  <!-- 🎶 Audio Modal -->
   <div id="audioModal">
     <div class="bg-[color:var(--card)] rounded-2xl p-4 w-11/12 max-w-sm text-center shadow-xl">
       <h3 class="text-lg font-semibold mb-3">🎵 Now Playing</h3>
@@ -168,6 +179,15 @@
       bandAudio.pause();
       bandAudio.currentTime = 0;
       audioModal.classList.remove('active');
+    });
+
+    // Close modal if clicking outside
+    audioModal.addEventListener('click', (e) => {
+      if (e.target === audioModal) {
+        bandAudio.pause();
+        bandAudio.currentTime = 0;
+        audioModal.classList.remove('active');
+      }
     });
   </script>
 </body>
